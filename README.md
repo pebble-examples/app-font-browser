@@ -1,4 +1,4 @@
-# app_font_browser
+# app-font-browser
 
 ![screenshot](app_font_browser-screenshot.png)
 
