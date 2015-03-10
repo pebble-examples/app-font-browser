@@ -1,6 +1,6 @@
 # app-font-browser
 
-![screenshot](app_font_browser-screenshot.png)
+![screenshot](app-font-browser-screenshot.png)
 
 This example show how to load and display all the Pebble built-in system fonts. 
 
