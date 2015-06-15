@@ -12,7 +12,7 @@
 #include "pebble.h"
 
 #ifdef PBL_PLATFORM_BASALT
-#define NUM_FONTS 21
+#define NUM_FONTS 23
 #elif PBL_PLATFORM_APLITE
 #define NUM_FONTS 16
 #endif
@@ -46,10 +46,12 @@ static PebbleFont pebble_fonts[] = {
  { .name = "Droid",  .variant = "28 Bold", .res = FONT_KEY_DROID_SERIF_28_BOLD },
 #ifdef PBL_PLATFORM_BASALT
  { .name = "LECO", .variant = "20 Bold Numbers", .res = FONT_KEY_LECO_20_BOLD_NUMBERS },
+ { .name = "LECO", .variant = "26 Bold Numbers AM/PM", .res = FONT_KEY_LECO_26_BOLD_NUMBERS_AM_PM },
+ { .name = "LECO", .variant = "28 Light Numbers", .res = FONT_KEY_LECO_28_LIGHT_NUMBERS },
  { .name = "LECO", .variant = "32 Bold Numbers", .res = FONT_KEY_LECO_32_BOLD_NUMBERS },
  { .name = "LECO", .variant = "36 Bold Numbers", .res = FONT_KEY_LECO_36_BOLD_NUMBERS },
  { .name = "LECO", .variant = "38 Bold Numbers", .res = FONT_KEY_LECO_38_BOLD_NUMBERS },
- { .name = "LECO", .variant = "28 Light Numbers", .res = FONT_KEY_LECO_28_LIGHT_NUMBERS }
+ { .name = "LECO", .variant = "42 Bold Numbers", .res = FONT_KEY_LECO_42_NUMBERS },
 #endif
 };
 
