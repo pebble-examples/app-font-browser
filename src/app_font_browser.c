@@ -13,7 +13,7 @@
 
 #ifdef PBL_SDK_3
 #define NUM_FONTS 21
-#elif PBL_PLATFORM_APLITE
+#elif PBL_SDK_2
 #define NUM_FONTS 16
 #endif
 #define NUM_MESSAGES 3
@@ -190,14 +190,18 @@ static void font_window_load(Window *window) {
 
   GFont text_alignment = fonts_get_system_font(PBL_IF_RECT_ELSE(FONT_KEY_GOTHIC_18_BOLD, FONT_KEY_GOTHIC_14_BOLD));
 
-  uint8_t text_separation = 2;
+  const uint8_t text_separation = 2;
 
   s_font_size_layer = text_layer_create(window_bounds);
   text_layer_set_font(s_font_size_layer, text_alignment);
+
   window_bounds.origin.y += window_bounds.size.h - text_separation;
+
   s_font_name_layer = text_layer_create(window_bounds);
   text_layer_set_font(s_font_name_layer, text_alignment);
+
   window_bounds.origin.y += window_bounds.size.h - text_separation;
+
   s_font_variant_layer = text_layer_create(window_bounds);
   text_layer_set_font(s_font_variant_layer, text_alignment);
 
@@ -208,13 +212,10 @@ static void font_window_load(Window *window) {
   layer_add_child(window_layer, text_layer_get_layer(s_font_size_layer));
 #ifdef PBL_ROUND
   text_layer_enable_screen_text_flow_and_paging(s_text_layer, 5);
-  text_layer_set_text_alignment(s_text_layer, GTextAlignmentCenter);
-
-  text_layer_set_text_alignment(s_font_name_layer, GTextAlignmentCenter);
-
-  text_layer_set_text_alignment(s_font_variant_layer, GTextAlignmentCenter);
-
   text_layer_enable_screen_text_flow_and_paging(s_font_size_layer, 5);
+  text_layer_set_text_alignment(s_text_layer, GTextAlignmentCenter);
+  text_layer_set_text_alignment(s_font_name_layer, GTextAlignmentCenter);
+  text_layer_set_text_alignment(s_font_variant_layer, GTextAlignmentCenter);
   text_layer_set_text_alignment(s_font_size_layer, GTextAlignmentCenter);
 #endif
   // Finally, update the text and font in the layers
