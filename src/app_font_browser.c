@@ -11,11 +11,7 @@
 
 #include "pebble.h"
 
-#ifdef PBL_SDK_3
 #define NUM_FONTS 21
-#elif PBL_SDK_2
-#define NUM_FONTS 16
-#endif
 #define NUM_MESSAGES 3
 
 typedef struct {
@@ -44,13 +40,11 @@ static PebbleFont pebble_fonts[] = {
  { .name = "Roboto", .variant = "21 Condensed", .res = FONT_KEY_ROBOTO_CONDENSED_21 },
  { .name = "Roboto", .variant = "49 Bold Subset", .res = FONT_KEY_ROBOTO_BOLD_SUBSET_49 },
  { .name = "Droid",  .variant = "28 Bold", .res = FONT_KEY_DROID_SERIF_28_BOLD },
-#ifdef PBL_SDK_3
  { .name = "LECO", .variant = "20 Bold Numbers", .res = FONT_KEY_LECO_20_BOLD_NUMBERS },
  { .name = "LECO", .variant = "32 Bold Numbers", .res = FONT_KEY_LECO_32_BOLD_NUMBERS },
  { .name = "LECO", .variant = "36 Bold Numbers", .res = FONT_KEY_LECO_36_BOLD_NUMBERS },
  { .name = "LECO", .variant = "38 Bold Numbers", .res = FONT_KEY_LECO_38_BOLD_NUMBERS },
  { .name = "LECO", .variant = "28 Light Numbers", .res = FONT_KEY_LECO_28_LIGHT_NUMBERS }
-#endif
 };
 
 static char *s_messages[] = {
@@ -148,7 +142,7 @@ static void up_click_handler(ClickRecognizerRef recognizer, void *context) {
   MenuIndex idx = menu_layer_get_selected_index(s_menu_layer);
   idx.row = s_current_font;
   menu_layer_set_selected_index(s_menu_layer, idx, MenuRowAlignCenter, false);
-  
+
   show_selected_font_and_message();
 }
 
@@ -161,7 +155,7 @@ static void down_click_handler(ClickRecognizerRef recognizer, void *context) {
   MenuIndex idx = menu_layer_get_selected_index(s_menu_layer);
   idx.row = s_current_font;
   menu_layer_set_selected_index(s_menu_layer, idx, MenuRowAlignCenter, false);
-  
+
   show_selected_font_and_message();
 }
 
