@@ -11,11 +11,7 @@
 
 #include "pebble.h"
 
-#ifdef PBL_PLATFORM_BASALT
-#define NUM_FONTS 23
-#elif PBL_PLATFORM_APLITE
-#define NUM_FONTS 16
-#endif
+#define NUM_FONTS 29
 #define NUM_MESSAGES 3
 
 typedef struct {
@@ -37,13 +33,14 @@ static PebbleFont pebble_fonts[] = {
  { .name = "Bitham", .variant = "30 Black", .res = FONT_KEY_BITHAM_30_BLACK },
  { .name = "Bitham", .variant = "42 Bold", .res = FONT_KEY_BITHAM_42_BOLD },
  { .name = "Bitham", .variant = "42 Light", .res = FONT_KEY_BITHAM_42_LIGHT },
-
  { .name = "Bitham", .variant = "34 Medium Numbers", .res = FONT_KEY_BITHAM_34_MEDIUM_NUMBERS },
  { .name = "Bitham", .variant = "42 Medium Numbers", .res = FONT_KEY_BITHAM_42_MEDIUM_NUMBERS },
 
  { .name = "Roboto", .variant = "21 Condensed", .res = FONT_KEY_ROBOTO_CONDENSED_21 },
  { .name = "Roboto", .variant = "49 Bold Subset", .res = FONT_KEY_ROBOTO_BOLD_SUBSET_49 },
+
  { .name = "Droid",  .variant = "28 Bold", .res = FONT_KEY_DROID_SERIF_28_BOLD },
+
  { .name = "LECO", .variant = "20 Bold Numbers", .res = FONT_KEY_LECO_20_BOLD_NUMBERS },
  { .name = "LECO", .variant = "26 Bold Numbers AM/PM", .res = FONT_KEY_LECO_26_BOLD_NUMBERS_AM_PM },
  { .name = "LECO", .variant = "28 Light Numbers", .res = FONT_KEY_LECO_28_LIGHT_NUMBERS },
@@ -51,6 +48,13 @@ static PebbleFont pebble_fonts[] = {
  { .name = "LECO", .variant = "36 Bold Numbers", .res = FONT_KEY_LECO_36_BOLD_NUMBERS },
  { .name = "LECO", .variant = "38 Bold Numbers", .res = FONT_KEY_LECO_38_BOLD_NUMBERS },
  { .name = "LECO", .variant = "42 Bold Numbers", .res = FONT_KEY_LECO_42_NUMBERS },
+
+ { .name = "AGENCY", .variant = "36 Numbers AM/PM", .res = FONT_KEY_AGENCY_FB_36_NUMBERS_AM_PM },
+ { .name = "AGENCY", .variant = "60 Numbers AM/PM", .res = FONT_KEY_AGENCY_FB_60_NUMBERS_AM_PM },
+ { .name = "AGENCY", .variant = "60 Thin Numbers AM/PM", .res = FONT_KEY_AGENCY_FB_60_THIN_NUMBERS_AM_PM },
+ { .name = "AGENCY", .variant = "46 Numbers AM/PM", .res = FONT_KEY_AGENCY_FB_46_NUMBERS_AM_PM },
+ { .name = "AGENCY", .variant = "88 Numbers AM/PM", .res = FONT_KEY_AGENCY_FB_88_NUMBERS_AM_PM },
+ { .name = "AGENCY", .variant = "88 Thin Numbers AM/PM", .res = FONT_KEY_AGENCY_FB_88_THIN_NUMBERS_AM_PM },
 };
 
 static char *s_messages[] = {

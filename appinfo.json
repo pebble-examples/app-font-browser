@@ -13,9 +13,10 @@
     "media": []
   },
   "targetPlatforms": [
-    "aplite",
     "basalt",
-    "chalk"
+    "chalk",
+    "diorite",
+    "emery"
   ],
   "sdkVersion": "3"
 }
