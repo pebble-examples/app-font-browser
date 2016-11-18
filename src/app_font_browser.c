@@ -11,7 +11,7 @@
 
 #include "pebble.h"
 
-#define NUM_FONTS 29
+#define NUM_FONTS 23
 #define NUM_MESSAGES 3
 
 typedef struct {
@@ -48,13 +48,6 @@ static PebbleFont pebble_fonts[] = {
  { .name = "LECO", .variant = "36 Bold Numbers", .res = FONT_KEY_LECO_36_BOLD_NUMBERS },
  { .name = "LECO", .variant = "38 Bold Numbers", .res = FONT_KEY_LECO_38_BOLD_NUMBERS },
  { .name = "LECO", .variant = "42 Bold Numbers", .res = FONT_KEY_LECO_42_NUMBERS },
-
- { .name = "AGENCY", .variant = "36 Numbers AM/PM", .res = FONT_KEY_AGENCY_FB_36_NUMBERS_AM_PM },
- { .name = "AGENCY", .variant = "60 Numbers AM/PM", .res = FONT_KEY_AGENCY_FB_60_NUMBERS_AM_PM },
- { .name = "AGENCY", .variant = "60 Thin Numbers AM/PM", .res = FONT_KEY_AGENCY_FB_60_THIN_NUMBERS_AM_PM },
- { .name = "AGENCY", .variant = "46 Numbers AM/PM", .res = FONT_KEY_AGENCY_FB_46_NUMBERS_AM_PM },
- { .name = "AGENCY", .variant = "88 Numbers AM/PM", .res = FONT_KEY_AGENCY_FB_88_NUMBERS_AM_PM },
- { .name = "AGENCY", .variant = "88 Thin Numbers AM/PM", .res = FONT_KEY_AGENCY_FB_88_THIN_NUMBERS_AM_PM },
 };
 
 static char *s_messages[] = {
