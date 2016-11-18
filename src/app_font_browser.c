@@ -47,7 +47,7 @@ static PebbleFont pebble_fonts[] = {
  { .name = "LECO", .variant = "32 Bold Numbers", .res = FONT_KEY_LECO_32_BOLD_NUMBERS },
  { .name = "LECO", .variant = "36 Bold Numbers", .res = FONT_KEY_LECO_36_BOLD_NUMBERS },
  { .name = "LECO", .variant = "38 Bold Numbers", .res = FONT_KEY_LECO_38_BOLD_NUMBERS },
- { .name = "LECO", .variant = "42 Bold Numbers", .res = FONT_KEY_LECO_42_NUMBERS },
+ { .name = "LECO", .variant = "42 Numbers", .res = FONT_KEY_LECO_42_NUMBERS },
 };
 
 static char *s_messages[] = {
