@@ -44,7 +44,6 @@ static PebbleFont pebble_fonts[] = {
  { .name = "Roboto", .variant = "21 Condensed", .res = FONT_KEY_ROBOTO_CONDENSED_21 },
  { .name = "Roboto", .variant = "49 Bold Subset", .res = FONT_KEY_ROBOTO_BOLD_SUBSET_49 },
  { .name = "Droid",  .variant = "28 Bold", .res = FONT_KEY_DROID_SERIF_28_BOLD },
-#ifdef PBL_PLATFORM_BASALT
  { .name = "LECO", .variant = "20 Bold Numbers", .res = FONT_KEY_LECO_20_BOLD_NUMBERS },
  { .name = "LECO", .variant = "26 Bold Numbers AM/PM", .res = FONT_KEY_LECO_26_BOLD_NUMBERS_AM_PM },
  { .name = "LECO", .variant = "28 Light Numbers", .res = FONT_KEY_LECO_28_LIGHT_NUMBERS },
@@ -52,7 +51,6 @@ static PebbleFont pebble_fonts[] = {
  { .name = "LECO", .variant = "36 Bold Numbers", .res = FONT_KEY_LECO_36_BOLD_NUMBERS },
  { .name = "LECO", .variant = "38 Bold Numbers", .res = FONT_KEY_LECO_38_BOLD_NUMBERS },
  { .name = "LECO", .variant = "42 Bold Numbers", .res = FONT_KEY_LECO_42_NUMBERS },
-#endif
 };
 
 static char *s_messages[] = {
@@ -150,7 +148,7 @@ static void up_click_handler(ClickRecognizerRef recognizer, void *context) {
   MenuIndex idx = menu_layer_get_selected_index(s_menu_layer);
   idx.row = s_current_font;
   menu_layer_set_selected_index(s_menu_layer, idx, MenuRowAlignCenter, false);
-  
+
   show_selected_font_and_message();
 }
 
@@ -163,7 +161,7 @@ static void down_click_handler(ClickRecognizerRef recognizer, void *context) {
   MenuIndex idx = menu_layer_get_selected_index(s_menu_layer);
   idx.row = s_current_font;
   menu_layer_set_selected_index(s_menu_layer, idx, MenuRowAlignCenter, false);
-  
+
   show_selected_font_and_message();
 }
 
@@ -181,32 +179,45 @@ static void font_window_load(Window *window) {
   GRect window_bounds = layer_get_bounds(window_layer);
 
   // Arrange the three text layers on top of each other
-  window_bounds.size.h -= 40;
+  window_bounds.size.h -= PBL_IF_RECT_ELSE(60, 70);
   s_text_layer = text_layer_create(window_bounds);
 
   window_bounds.origin.x = 2;
   window_bounds.size.w -= 4;
 
   window_bounds.origin.y += window_bounds.size.h;
-  window_bounds.size.h = 18;
+  window_bounds.size.h = PBL_IF_RECT_ELSE(20, 16);
+
+  GFont text_alignment = fonts_get_system_font(PBL_IF_RECT_ELSE(FONT_KEY_GOTHIC_18_BOLD, FONT_KEY_GOTHIC_14_BOLD));
+
+  const uint8_t text_separation = 2;
+
+  s_font_size_layer = text_layer_create(window_bounds);
+  text_layer_set_font(s_font_size_layer, text_alignment);
+
+  window_bounds.origin.y += window_bounds.size.h - text_separation;
 
   s_font_name_layer = text_layer_create(window_bounds);
-  text_layer_set_font(s_font_name_layer, fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD));
+  text_layer_set_font(s_font_name_layer, text_alignment);
 
-  window_bounds.origin.y += window_bounds.size.h;
+  window_bounds.origin.y += window_bounds.size.h - text_separation;
+
   s_font_variant_layer = text_layer_create(window_bounds);
-  text_layer_set_font(s_font_variant_layer, fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD));
-
-  window_bounds.origin.y -= 2.0 * window_bounds.size.h;
-  s_font_size_layer = text_layer_create(window_bounds);
-  text_layer_set_font(s_font_size_layer, fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD));
+  text_layer_set_font(s_font_variant_layer, text_alignment);
 
   // Add the child layer to the current window (s_font_window)
   layer_add_child(window_layer, text_layer_get_layer(s_text_layer));
   layer_add_child(window_layer, text_layer_get_layer(s_font_name_layer));
   layer_add_child(window_layer, text_layer_get_layer(s_font_variant_layer));
   layer_add_child(window_layer, text_layer_get_layer(s_font_size_layer));
-
+#ifdef PBL_ROUND
+  text_layer_enable_screen_text_flow_and_paging(s_text_layer, 5);
+  text_layer_enable_screen_text_flow_and_paging(s_font_size_layer, 5);
+  text_layer_set_text_alignment(s_text_layer, GTextAlignmentCenter);
+  text_layer_set_text_alignment(s_font_name_layer, GTextAlignmentCenter);
+  text_layer_set_text_alignment(s_font_variant_layer, GTextAlignmentCenter);
+  text_layer_set_text_alignment(s_font_size_layer, GTextAlignmentCenter);
+#endif
   // Finally, update the text and font in the layers
   show_selected_font_and_message();
 }
